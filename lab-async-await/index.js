@@ -5,6 +5,9 @@
 // index.js
 
 // Async function to fetch posts from external API
+// index.js
+
+// Async function to fetch posts from external API
 async function getPosts() {
   try {
     const response = await fetch('https://jsonplaceholder.typicode.com/posts');
@@ -23,6 +26,10 @@ async function getPosts() {
 // Function to display posts on the page
 function displayPosts(posts) {
   const postList = document.getElementById('post-list');
+  if (!postList) {
+    console.error("No element with id 'post-list' found.");
+    return;
+  }
 
   posts.forEach(post => {
     const li = document.createElement('li');
@@ -39,5 +46,7 @@ function displayPosts(posts) {
   });
 }
 
-// Call the async function when the script loads
-getPosts();
+// Ensure DOM is ready before running
+document.addEventListener("DOMContentLoaded", () => {
+  getPosts();
+});
